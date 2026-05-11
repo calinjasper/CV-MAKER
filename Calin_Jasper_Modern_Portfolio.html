@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calin Jasper | Python Automation Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+--bg:#0f172a;
+--card:#111827;
+--accent:#38bdf8;
+--text:#e5e7eb;
+--muted:#94a3b8;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+font-family:Inter, sans-serif;
+background:linear-gradient(135deg,#0f172a,#020617);
+color:var(--text);
+line-height:1.6;
+}
+
+.container{
+max-width:1100px;
+margin:40px auto;
+padding:20px;
+}
+
+.header{
+text-align:center;
+margin-bottom:40px;
+}
+
+.name{
+font-size:2.8rem;
+font-weight:700;
+letter-spacing:1px;
+}
+
+.role{
+color:var(--accent);
+font-size:1.2rem;
+margin-top:8px;
+}
+
+.summary{
+max-width:700px;
+margin:20px auto;
+color:var(--muted);
+}
+
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:25px;
+}
+
+.card{
+background:var(--card);
+padding:25px;
+border-radius:14px;
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
+
+.section-title{
+font-size:1.2rem;
+margin-bottom:15px;
+color:var(--accent);
+font-weight:600;
+}
+
+.skill{
+display:inline-block;
+background:#1f2937;
+padding:6px 12px;
+border-radius:6px;
+margin:5px;
+font-size:0.9rem;
+}
+
+.timeline-item{
+margin-bottom:15px;
+}
+
+.item-title{
+font-weight:600;
+}
+
+.item-date{
+color:var(--muted);
+font-size:0.85rem;
+}
+
+.actions{
+text-align:center;
+margin-top:30px;
+}
+
+.btn{
+background:var(--accent);
+color:black;
+border:none;
+padding:12px 24px;
+border-radius:8px;
+cursor:pointer;
+font-weight:600;
+margin:5px;
+}
+
+@media(max-width:768px){
+.grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+<div class="name">Calin Jasper</div>
+<div class="role">Python Automation Developer · MCA Graduate</div>
+<p class="summary">
+Entry-level Python automation developer with freelance experience building scripts and small ETL pipelines that reduce manual work and improve reliability. Focused on pragmatic solutions: REST API integration, data normalization with Pandas/OpenPyXL, robust logging and scheduled jobs on Windows.
+</p>
+</div>
+
+<div class="grid">
+
+<div class="card">
+<div class="section-title">Technical Skills</div>
+<div class="skill">Python</div>
+<div class="skill">Pandas</div>
+<div class="skill">Requests</div>
+<div class="skill">Selenium</div>
+<div class="skill">OpenPyXL/CSV</div>
+<div class="skill">API Integration</div>
+<div class="skill">MySQL</div>
+<div class="skill">SQLite</div>
+<div class="skill">Logging</div>
+<div class="skill">Windows Scheduler</div>
+<div class="skill">Git</div>
+</div>
+
+<div class="card">
+<div class="section-title">Freelance Experience</div>
+
+<div class="timeline-item">
+<div class="item-title">Python Automation Developer</div>
+<div class="item-date">2024 – Present</div>
+<p>Built 10+ automation utilities for data cleaning, file transforms and report generation; reduced manual effort by 30–60%.</p>
+</div>
+
+<div class="timeline-item">
+<p>Integrated REST APIs and normalized JSON to CSV/Excel; scheduled reliable Windows jobs with logging and retries.</p>
+</div>
+
+</div>
+
+<div class="card">
+<div class="section-title">Education</div>
+<p><strong>MCA</strong> — PET Engineering College (2022–2024)</p>
+<p><strong>BSc Computer Science</strong> — Sardar Rajas College (2019–2022)</p>
+</div>
+
+<div class="card">
+<div class="section-title">Highlights</div>
+<p>Delivered multiple freelance projects on time with clear documentation.</p>
+<p>Cut daily trading workflow preparation from ~45 to ~15 minutes using Python/Pandas.</p>
+</div>
+
+<div class="card">
+<div class="section-title">Contact</div>
+<p>📞 9500207132</p>
+<p>📧 calinjasper333@gmail.com</p>
+<p>📍 Tirunelveli, Tamil Nadu</p>
+<p>🐙 <a href="https://github.com/calinjasper" target="_blank" style="color:var(--text);text-decoration:none">github.com/calinjasper</a></p>
+<p>🔗 <a href="https://www.linkedin.com/in/calin-jasper-914633290/" target="_blank" style="color:var(--text);text-decoration:none">linkedin.com/in/calin-jasper-914633290/</a></p>
+</div>
+
+</div>
+
+<div class="actions">
+<button class="btn" onclick="window.print()">Save as PDF</button>
+<button class="btn" onclick="downloadDoc()">Download DOC</button>
+<button class="btn" onclick="downloadTxt()">Download TXT</button>
+</div>
+
+</div>
+
+<script>
+function downloadDoc(){
+const content = `
+<table style="width:100%;font-family:'Segoe UI',Arial,sans-serif">
+<tr>
+<td style="padding:16px 0;">
+<h1 style="margin:0;color:#111827">Calin Jasper</h1>
+<h3 style="margin:4px 0 12px 0;color:#2563eb">Python Automation Developer · MCA Graduate</h3>
+<p>Entry-level Python automation developer with freelance experience building scripts and ETL pipelines that integrate REST APIs, normalize data and automate Windows workflows with logging and scheduling.</p>
+
+<h2 style="border-top:1px solid #e5e7eb;padding-top:10px">Technical Skills</h2>
+<p><strong>Python:</strong> Pandas, Requests, Selenium, OpenPyXL, CSV</p>
+<p><strong>Automation:</strong> Scripting, Windows Scheduler, Logging, API Integration, Git</p>
+<p><strong>Databases:</strong> MySQL, SQLite</p>
+
+<h2 style="border-top:1px solid #e5e7eb;padding-top:10px">Experience</h2>
+<p><strong>Freelance Python Automation Developer</strong> — 2024–Present</p>
+<ul>
+<li>Built 10+ automation utilities; reduced manual effort by 30–60%.</li>
+<li>Integrated REST APIs; normalized JSON to CSV/Excel with Pandas.</li>
+<li>Scheduled reliable jobs with logging/retries on Windows.</li>
+</ul>
+
+<h2 style="border-top:1px solid #e5e7eb;padding-top:10px">Projects</h2>
+<p><strong>Trading Workflow Automation</strong> — Cut prep time from ~45 to ~15 minutes.</p>
+<p><strong>File Processing & Audit Utility</strong> — Reduced format errors by 50%+.</p>
+
+<h2 style="border-top:1px solid #e5e7eb;padding-top:10px">Education</h2>
+<p>MCA — PET Engineering College (2022–2024)</p>
+<p>BSc Computer Science — Sardar Rajas (2019–2022)</p>
+<h2 style="border-top:1px solid #e5e7eb;padding-top:10px">Links</h2>
+<p>GitHub: https://github.com/calinjasper</p>
+<p>LinkedIn: https://www.linkedin.com/in/calin-jasper-914633290/</p>
+</td>
+</tr>
+</table>
+`;
+
+const blob = new Blob(['\ufeff', content], { type: 'application/msword' });
+const url = URL.createObjectURL(blob);
+const link = document.createElement('a');
+link.href = url;
+link.download = 'Calin_Jasper_Portfolio.doc';
+link.click();
+URL.revokeObjectURL(url);
+}
+
+function downloadTxt(){
+const lines = [];
+lines.push('Calin Jasper');
+lines.push('Python Automation Developer · MCA Graduate');
+lines.push('');
+lines.push('Summary');
+lines.push('Entry-level Python automation developer with freelance experience in scripts, APIs and Windows scheduling.');
+lines.push('');
+lines.push('Technical Skills');
+lines.push('Python: Pandas, Requests, Selenium, OpenPyXL, CSV');
+lines.push('Automation: Scripting, Windows Scheduler, Logging, API Integration, Git');
+lines.push('Databases: MySQL, SQLite');
+lines.push('');
+lines.push('Experience');
+lines.push('Freelance Python Automation Developer (2024–Present)');
+lines.push('- Built 10+ utilities; 30–60% time savings.');
+lines.push('- Integrated REST APIs and normalized data.');
+lines.push('- Scheduled reliable jobs with logging/retries.');
+lines.push('');
+lines.push('Education');
+lines.push('MCA — PET Engineering College (2022–2024)');
+lines.push('BSc Computer Science — Sardar Rajas (2019–2022)');
+lines.push('');
+lines.push('Links');
+lines.push('GitHub: https://github.com/calinjasper');
+lines.push('LinkedIn: https://www.linkedin.com/in/calin-jasper-914633290/');
+const blob = new Blob([lines.join('\\n')], { type: 'text/plain;charset=utf-8' });
+const url = URL.createObjectURL(blob);
+const link = document.createElement('a');
+link.href = url;
+link.download = 'Calin_Jasper_Portfolio.txt';
+link.click();
+URL.revokeObjectURL(url);
+}
+</script>
+
+</body>
+</html>

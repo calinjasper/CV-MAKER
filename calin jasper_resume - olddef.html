@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calin Jasper - Resume</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --text-color: #333;
+            --bg-color: #f4f7f6;
+            --white: #ffffff;
+            --sidebar-bg: #2c3e50;
+            --sidebar-text: #ecf0f1;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            background: var(--white);
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            min-height: 1000px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: var(--sidebar-bg);
+            color: var(--sidebar-text);
+            padding: 30px;
+            text-align: center;
+        }
+
+        .profile-photo-container {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid var(--secondary-color);
+            position: relative;
+            background: #34495e;
+            cursor: pointer;
+        }
+
+        .profile-photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+
+        .upload-hint {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 0.9rem;
+            color: #bdc3c7;
+        }
+
+        .contact-info {
+            text-align: left;
+            margin-top: 30px;
+        }
+
+        .contact-item {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            font-size: 0.9rem;
+        }
+
+        .contact-item i {
+            margin-right: 10px;
+            color: var(--secondary-color);
+            margin-top: 4px;
+        }
+
+        .sidebar-section {
+            margin-top: 40px;
+            text-align: left;
+        }
+
+        .sidebar-title {
+            font-size: 1.2rem;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .skill-tag {
+            background: rgba(52, 152, 219, 0.2);
+            padding: 5px 10px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            display: inline-block;
+            font-size: 0.9rem;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 40px;
+        }
+
+        .header-name {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .header-role {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .summary {
+            margin-bottom: 30px;
+            color: #555;
+            font-style: italic;
+        }
+
+        .section {
+            margin-bottom: 35px;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title i {
+            margin-right: 10px;
+            color: var(--secondary-color);
+        }
+
+        .timeline-item {
+            margin-bottom: 20px;
+            position: relative;
+            padding-left: 20px;
+            border-left: 2px solid #eee;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 6px;
+            width: 10px;
+            height: 10px;
+            background: var(--secondary-color);
+            border-radius: 50%;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            flex-wrap: wrap;
+        }
+
+        .item-title {
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+
+        .item-date {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .item-subtitle {
+            color: var(--secondary-color);
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .item-desc {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Actions */
+        .actions {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+            background: var(--secondary-color);
+        }
+
+        /* Print Styles */
+        @media print {
+            @page { size: A4; margin: 12mm; }
+            body { background: white; -webkit-print-color-adjust: exact; print-color-adjust: exact; font-family: 'Segoe UI', Arial, sans-serif; }
+            .container { 
+                box-shadow: none;
+                margin: 0 auto !important;
+                width: 190mm;           /* lock page width to A4 content area */
+                grid-template-columns: 70mm 1fr; /* stable sidebar width in print */
+                height: auto;
+                background: #ffffff;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .actions {
+                display: none;
+            }
+            .sidebar {
+                -webkit-print-color-adjust: exact; print-color-adjust: exact;
+            }
+            .skill-tag { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                margin: 0;
+            }
+            .sidebar {
+                padding: 20px;
+            }
+            .main-content {
+                padding: 20px;
+            }
+            .profile-photo-container {
+                width: 150px;
+                height: 150px;
+            }
+            .actions {
+                position: static;
+                justify-content: center;
+                margin: 20px 0;
+                padding-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="resume">
+        <aside class="sidebar">
+            <div class="profile-photo-container" onclick="document.getElementById('photoInput').click()">
+                <img id="profilePhoto" src="" alt="Profile Photo">
+                <div class="upload-hint" id="uploadHint">
+                    <i class="fas fa-camera fa-2x"></i><br>
+                    Upload Photo
+                </div>
+                <input type="file" id="photoInput" hidden accept="image/*">
+            </div>
+
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>9500207132</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span style="word-break: break-all;">calinjasper333@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>143/6, Main Road, North Veppliangulam, Tirunelveli - 627 109</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-github"></i>
+                    <a href="https://github.com/calinjasper" target="_blank" rel="noreferrer noopener" style="color:inherit;text-decoration:none;word-break:break-all;">github.com/calinjasper</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-linkedin"></i>
+                    <a href="https://www.linkedin.com/in/calin-jasper-914633290/" target="_blank" rel="noreferrer noopener" style="color:inherit;text-decoration:none;word-break:break-all;">linkedin.com/in/calin-jasper-914633290/</a>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Languages</h3>
+                <div class="skill-tag">Native Tamil</div>
+                <div class="skill-tag">Advanced English</div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Soft Skills</h3>
+                <div class="skill-tag">Communication</div>
+                <div class="skill-tag">Leadership</div>
+                <div class="skill-tag">Problem Solving</div>
+				<div class="skill-tag">Programming</div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header>
+                <h1 class="header-name">Calin Jasper</h1>
+                <h2 class="header-role">Python Automation Developer · MCA Graduate</h2>
+                <p class="summary">
+                    Entry-level Python automation developer with freelance experience building scripts and utilities that streamline repetitive tasks, integrate REST APIs, and process files/data reliably. Strengths include writing clean, tested code, designing small-scale ETL pipelines, and automating Windows workflows using schedulers and logging. Passionate about reducing manual effort and improving accuracy with pragmatic engineering.
+                </p>
+            </header>
+            
+            <section class="section">
+                <h3 class="section-title"><i class="fas fa-briefcase"></i> Experience</h3>
+                <div class="timeline-item">
+                    <div class="item-header">
+                        <span class="item-title">Freelance Python Automation Developer</span>
+                        <span class="item-date">2024 – Present</span>
+                    </div>
+                    <div class="item-subtitle">Remote · Client projects</div>
+                    <div class="item-desc">
+                        <ul style="margin-left:16px;">
+                            <li>Built 10+ Python scripts that automated data cleaning, file transformations and report generation, reducing manual effort by 30–60%.</li>
+                            <li>Developed robust logging and error-handling, cutting failure rate on scheduled jobs by 80%.</li>
+                            <li>Integrated REST APIs using requests and OAuth where required; normalized JSON into tabular outputs (CSV/Excel/SQL).</li>
+                            <li>Delivered small utilities for trading workflows and system tasks; versioned with Git and documented usage.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h3 class="section-title"><i class="fas fa-graduation-cap"></i> Education</h3>
+                
+                <div class="timeline-item">
+                    <div class="item-header">
+                        <span class="item-title">Master of Computer Application</span>
+                        <span class="item-date">2022 - 2024</span>
+                    </div>
+                    <div class="item-subtitle">PET ENGINEERING COLLEGE</div>
+                    <div class="item-desc">Valliyur, Tamil Nadu 627117</div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="item-header">
+                        <span class="item-title">BSc. Computer Science</span>
+                        <span class="item-date">2019 - 2022</span>
+                    </div>
+                    <div class="item-subtitle">SARDAR RAJAS ARTS & SCIENCE COLLEGE</div>
+                    <div class="item-desc">Vaddakkankulam, Tamil Nadu 627116</div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h3 class="section-title"><i class="fas fa-laptop-code"></i> Technical Skills</h3>
+                <div class="timeline-item" style="border:none; padding-left:0;">
+                    <div class="item-desc">
+                        <strong>Languages & Libraries:</strong>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Pandas</span>
+                        <span class="skill-tag">Requests</span>
+                        <span class="skill-tag">Selenium</span>
+                        <span class="skill-tag">OpenPyXL/CSV</span>
+                        <br>
+                        <strong>Automation & Tools:</strong>
+                        <span class="skill-tag">Scripting</span>
+                        <span class="skill-tag">Task Scheduler</span>
+                        <span class="skill-tag">Logging</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">API Integration</span>
+                        <br>
+                        <strong>Databases:</strong>
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">SQLite</span>
+                        <br>
+                        <strong>Systems & Networking:</strong>
+                        <span class="skill-tag">Windows</span>
+                        <span class="skill-tag">Linux</span>
+                        <span class="skill-tag">Basic Networking</span>
+                        <span class="skill-tag">Hardware Troubleshooting</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h3 class="section-title"><i class="fas fa-project-diagram"></i> Projects</h3>
+                <div class="timeline-item">
+                    <div class="item-header">
+                        <span class="item-title">Trading Workflow Automation</span>
+                        <span class="item-date">2024</span>
+                    </div>
+                    <div class="item-desc">
+                        Automated data downloads, validations and summary report creation; cut daily preparation time from ~45 to ~15 minutes using Python, Pandas and scheduled jobs.
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="item-header">
+                        <span class="item-title">File Processing & Audit Utility</span>
+                        <span class="item-date">2024</span>
+                    </div>
+                    <div class="item-desc">
+                        Built a configurable tool to merge Excel/CSV files, validate schema, and produce audit logs; reduced rework due to format errors by 50%+.
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="item-header">
+                        <span class="item-title">Web Data Extractor</span>
+                        <span class="item-date">2023</span>
+                    </div>
+                    <div class="item-desc">
+                        Implemented authenticated API and scraping workflows with requests/Selenium, normalized JSON/HTML to structured datasets for analysis.
+                    </div>
+                </div>
+            </section>
+            
+            <section class="section">
+                <h3 class="section-title"><i class="fas fa-trophy"></i> Highlights</h3>
+                <div class="timeline-item" style="border:none; padding-left:0;">
+                    <div class="item-desc">
+                        <ul style="margin-left:16px;">
+                            <li>Delivered multiple freelance automation projects with 100% on-time handover.</li>
+                            <li>Recognized for organized documentation and maintainable code structure.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div class="actions">
+        <button class="btn" onclick="window.print()">
+            <i class="fas fa-file-pdf"></i> Save as PDF
+        </button>
+        <button class="btn" onclick="downloadAsDoc()">
+            <i class="fas fa-file-word"></i> Save as DOC
+        </button>
+        <button class="btn" onclick="downloadAsTxt()">
+            <i class="fas fa-file-lines"></i> Save as TXT
+        </button>
+    </div>
+
+    <script>
+        // Photo Upload Logic
+        const photoInput = document.getElementById('photoInput');
+        const profilePhoto = document.getElementById('profilePhoto');
+        const uploadHint = document.getElementById('uploadHint');
+        let photoDataURL = '';
+
+        photoInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    photoDataURL = event.target.result;
+                    profilePhoto.src = photoDataURL;
+                    profilePhoto.style.display = 'block';
+                    uploadHint.style.display = 'none';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // DOC Download Logic - Optimized for Word Compatibility
+        function downloadAsDoc() {
+            const docContent = `
+                <table style="width:100%;border-collapse:collapse;font-family:'Segoe UI',Arial,sans-serif;">
+                    <tr>
+                        <td style="width:30%;background-color:#1e293b;color:#f1f5f9;padding:32px 20px;vertical-align:top;">
+                            <div style="text-align:center;margin-bottom:24px;">
+                                ${photoDataURL ? `<img src="${photoDataURL}" width="110" height="110" style="border:2px solid #38bdf8;border-radius:12px;object-fit:cover;">` : '<div style="width:110px;height:110px;background:#334155;border-radius:12px;margin:0 auto;line-height:110px;color:#94a3b8;">Photo</div>'}
+                            </div>
+                            <h3 style="color:#38bdf8;font-size:13px;text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,0.15);padding-bottom:6px;margin-bottom:12px;">Contact</h3>
+                            <p style="font-size:12px;margin:8px 0;">📞 9500207132</p>
+                            <p style="font-size:12px;margin:8px 0;word-break:break-all;">📧 calinjasper333@gmail.com</p>
+                            <p style="font-size:12px;margin:8px 0;">📍 Tirunelveli - 627 109</p>
+                            <p style="font-size:12px;margin:8px 0;word-break:break-all;">GitHub: github.com/calinjasper</p>
+                            <p style="font-size:12px;margin:8px 0;word-break:break-all;">LinkedIn: linkedin.com/in/calin-jasper-914633290/</p>
+                            <h3 style="color:#38bdf8;font-size:13px;text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,0.15);padding-bottom:6px;margin:18px 0 10px;">Languages</h3>
+                            <p style="font-size:12px;margin:6px 0;">• Tamil (Native)</p>
+                            <p style="font-size:12px;margin:6px 0;">• English (Advanced)</p>
+                            <h3 style="color:#38bdf8;font-size:13px;text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,0.15);padding-bottom:6px;margin:18px 0 10px;">Soft Skills</h3>
+                            <p style="font-size:12px;margin:6px 0;">• Communication • Leadership • Problem Solving</p>
+                        </td>
+                        <td style="width:70%;padding:32px;vertical-align:top;background-color:#ffffff;">
+                            <h1 style="color:#1a2a3a;margin:0;font-size:28px;text-transform:uppercase;letter-spacing:.5px;">CALIN JASPER</h1>
+                            <h3 style="color:#3b82f6;margin:6px 0 16px 0;font-size:16px;">Python Automation Developer · MCA Graduate</h3>
+                            <p style="color:#374151;font-size:13px;line-height:1.6;margin-bottom:18px;">Entry-level Python automation developer with freelance experience building scripts and utilities that streamline repetitive tasks, integrate REST APIs, and process files/data reliably. Strengths include writing clean, tested code, designing small-scale ETL pipelines, and automating Windows workflows using schedulers and logging.</p>
+                            <h2 style="color:#1a2a3a;border-bottom:2px solid #f1f5f9;padding-bottom:8px;font-size:16px;">Experience</h2>
+                            <p style="margin:8px 0;"><strong>Freelance Python Automation Developer</strong> — 2024–Present</p>
+                            <ul style="color:#374151;font-size:13px;line-height:1.5;margin:8px 0 14px 18px;">
+                                <li>Built 10+ automation scripts for data cleaning, file transformations and reporting; reduced manual effort by 30–60%.</li>
+                                <li>Integrated REST APIs and normalized JSON to CSV/Excel/SQL; added robust logging and retries.</li>
+                                <li>Scheduled reliable jobs with Windows Task Scheduler; decreased failure rate by 80%.</li>
+                            </ul>
+                            <h2 style="color:#1a2a3a;border-bottom:2px solid #f1f5f9;padding-bottom:8px;font-size:16px;">Technical Skills</h2>
+                            <p style="color:#374151;font-size:13px;margin:6px 0;"><strong>Python:</strong> Pandas, Requests, Selenium, OpenPyXL, CSV</p>
+                            <p style="color:#374151;font-size:13px;margin:6px 0;"><strong>Automation:</strong> Scripting, Task Scheduler, Logging, API Integration, Git</p>
+                            <p style="color:#374151;font-size:13px;margin:6px 0;"><strong>Databases:</strong> MySQL, SQLite</p>
+                            <p style="color:#374151;font-size:13px;margin:6px 0;"><strong>Systems:</strong> Windows, Basic Networking, Hardware</p>
+                            <h2 style="color:#1a2a3a;border-bottom:2px solid #f1f5f9;padding-bottom:8px;font-size:16px;margin-top:8px;">Projects</h2>
+                            <p style="margin:6px 0;"><strong>Trading Workflow Automation</strong> — Cut prep time from ~45 to ~15 minutes using Python/Pandas.</p>
+                            <p style="margin:6px 0;"><strong>File Processing & Audit Utility</strong> — Reduced format errors by 50%+ with validations and logs.</p>
+                            <p style="margin:6px 0;"><strong>Web Data Extractor</strong> — Normalized API/HTML data into structured datasets.</p>
+                            <h2 style="color:#1a2a3a;border-bottom:2px solid #f1f5f9;padding-bottom:8px;font-size:16px;margin-top:8px;">Education</h2>
+                            <p style="margin:6px 0;"><strong>MCA</strong> — PET Engineering College (2022–2024)</p>
+                            <p style="margin:6px 0;"><strong>BSc Computer Science</strong> — Sardar Rajas Arts & Science College (2019–2022)</p>
+                        </td>
+                    </tr>
+                </table>
+            `;
+
+            const header = `<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>Resume</title></head><body>`;
+            const footer = "</body></html>";
+            const sourceHTML = header + docContent + footer;
+            
+            const blob = new Blob(['\ufeff', sourceHTML], { type: 'application/msword' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'Calin_Jasper_Resume.doc';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+        }
+        
+        function downloadAsTxt(){
+            const lines = [];
+            lines.push('CALIN JASPER');
+            lines.push('Python Automation Developer · MCA Graduate');
+            lines.push('');
+            lines.push('SUMMARY');
+            lines.push('Entry-level Python automation developer with freelance experience building scripts and utilities that streamline tasks, integrate REST APIs, and process data reliably.');
+            lines.push('');
+            lines.push('EXPERIENCE');
+            lines.push('Freelance Python Automation Developer | 2024–Present');
+            lines.push('- Built automation scripts for data cleaning, file transforms and reporting (30–60% time savings).');
+            lines.push('- Added logging/retries and scheduled jobs; decreased failure rate by 80%.');
+            lines.push('- Integrated REST APIs; normalized JSON to CSV/Excel/SQL.');
+            lines.push('');
+            lines.push('TECHNICAL SKILLS');
+            lines.push('Python: Pandas, Requests, Selenium, OpenPyXL, CSV');
+            lines.push('Automation: Scripting, Task Scheduler, Logging, API Integration, Git');
+            lines.push('Databases: MySQL, SQLite');
+            lines.push('Systems: Windows, Basic Networking, Hardware');
+            lines.push('');
+            lines.push('PROJECTS');
+            lines.push('- Trading Workflow Automation: Cut prep time from ~45 to ~15 minutes.');
+            lines.push('- File Processing & Audit Utility: Reduced format errors by 50%+.');
+            lines.push('- Web Data Extractor: Normalized API/HTML data to structured sets.');
+            lines.push('');
+            lines.push('EDUCATION');
+            lines.push('MCA — PET Engineering College (2022–2024)');
+            lines.push('BSc Computer Science — Sardar Rajas Arts & Science College (2019–2022)');
+            lines.push('');
+            lines.push('CONTACT');
+            lines.push('Phone: 9500207132');
+            lines.push('Email: calinjasper333@gmail.com');
+            lines.push('Location: Tirunelveli - 627 109');
+            lines.push('GitHub: https://github.com/calinjasper');
+            lines.push('LinkedIn: https://www.linkedin.com/in/calin-jasper-914633290/');
+            
+            const blob = new Blob([lines.join('\\n')], { type: 'text/plain;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'Calin_Jasper_Resume.txt';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+        }
+    </script>
+
+</body>
+</html>
